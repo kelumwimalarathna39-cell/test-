@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Final 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#0a0a0a,#1a0f1f,#000);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:'Playfair Display', serif;
+color:white;
+}
+
+/* HEARTS */
+.heart{
+position:absolute;
+color:pink;
+animation:float 6s linear infinite;
+opacity:0.6;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* TEXT */
+.line{
+font-size:60px;
+margin:10px;
+opacity:0;
+transform:translateY(30px);
+animation:fadeUp 1s forwards;
+text-shadow:0 0 15px pink;
+}
+
+.line:nth-child(1){animation-delay:0.5s;}
+.line:nth-child(2){animation-delay:1.5s;}
+.line:nth-child(3){animation-delay:2.5s;}
+
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div>
+<div class="line">I</div>
+<div class="line">Love</div>
+<div class="line">You sudu 💗</div>
+</div>
+
+<script>
+
+/* FLOATING HEARTS */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=Math.random()*20+10+"px";
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),6000);
+},300);
+
+</script>
+
+</body>
+</html>
