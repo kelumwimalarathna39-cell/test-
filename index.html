@@ -74,31 +74,43 @@ canvas.height = window.innerHeight;
 let particles = [];
 
 /* SIMPLE FIREWORK PARTICLES */
-function createParticle(){
-this.x = Math.random() * canvas.width;
-this.y = Math.random() * canvas.height / 2;
-this.size = Math.random() * 3 + 1;
-this.speedY = Math.random() * 2 - 1;
-this.color = "pink";
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function Particle(){
+  this.x = Math.random() * canvas.width;
+  this.y = Math.random() * canvas.height / 2;
+  this.size = Math.random() * 3 + 2;
+  this.speedY = Math.random() * 2 - 1;
 }
 
-for(let i=0;i<80;i++){
-particles.push(new createParticle());
+for(let i=0;i<100;i++){
+  particles.push(new Particle());
 }
 
 function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-particles.forEach(p=>{
-p.y += p.speedY;
-ctx.fillStyle = p.color;
-ctx.fillRect(p.x,p.y,p.size,p.size);
-});
+  particles.forEach(p=>{
+    p.y += p.speedY;
 
-requestAnimationFrame(animate);
+    if(p.y < 0){
+      p.y = canvas.height;
+    }
+
+    ctx.fillStyle = "pink";
+    ctx.fillRect(p.x,p.y,p.size,p.size);
+  });
+
+  requestAnimationFrame(animate);
 }
-animate();
 
+animate();
 /* TYPE TEXT */
 let text = "Happy Birthday My Angel 💗";
 let i = 0;
